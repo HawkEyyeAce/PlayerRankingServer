@@ -10,7 +10,7 @@ export async function rankingGetAllAction(request: Request, response: Response) 
     // get a ranking repository to perform operations with ranking
     const rankingRepository = getManager().getRepository(Ranking);
 
-    // load a ranking by a given id
+    // load all rankings
     const rankings = await rankingRepository.find();
 
     // return loaded rankings

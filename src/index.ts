@@ -29,9 +29,4 @@ createConnection().then(async connection => {
         console.log("  Press CTRL-C to stop\n");
     });
 
-    // Load all BDD
-    const rankingRepository = connection.getRepository(Ranking);
-    let savedRanking = await rankingRepository.find();
-    console.log("All rankings from the db: ", savedRanking);
-
   }).catch(error => console.log("TypeOrm connection error: ", error));
