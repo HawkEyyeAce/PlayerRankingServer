@@ -26,7 +26,7 @@ createConnection().then(async connection => {
     // run app
     app.listen(PORT, () => {
         console.info('Express server listening on http://localhost:', PORT);
-        console.log("  Press CTRL-C to stop\n");
+        console.log("Press CTRL-C to stop\n");
     });
 
   }).catch(error => console.log("TypeOrm connection error: ", error));

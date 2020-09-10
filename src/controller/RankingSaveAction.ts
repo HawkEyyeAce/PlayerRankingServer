@@ -13,6 +13,13 @@ export async function rankingSaveAction(request: Request, response: Response) {
     // create a real ranking object from ranking json object sent over http
     const newRanking = rankingRepository.create(request.body);
 
+    let data = {
+        'userID': request.body.userID,
+        'score': request.body.score
+    };
+
+    console.log(new Date().toUTCString() + " / " + request.method + " / " + rankingSaveAction.name + " / Data sent : " + JSON.stringify(data) + "\n");
+
     // save received ranking
     await rankingRepository.save(newRanking);
     

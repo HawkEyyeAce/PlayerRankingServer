@@ -13,6 +13,8 @@ export async function rankingGetAllAction(request: Request, response: Response) 
     // load all rankings
     const rankings = await rankingRepository.find();
 
+    console.log(new Date().toUTCString() + " / " + request.method + " / " + rankingGetAllAction.name + " / " + JSON.stringify(rankings) + "\n");
+
     // return loaded rankings
     response.send(rankings);
 }

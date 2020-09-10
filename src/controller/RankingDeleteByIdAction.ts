@@ -15,12 +15,17 @@ export async function rankingDeleteByIdAction(request: Request, response: Respon
 
     // if ranking was not found return 404 to the client
     if (!ranking) {
+        response.send("No data available");
         response.status(404);
         response.end();
         return;
     }
 
+    console.log(new Date().toUTCString() + " / " + request.method + " / " + rankingDeleteByIdAction.name + " / " + JSON.stringify(ranking));
+
     await rankingRepository.remove(ranking);
+
+    console.log("Score deleted\n");
 
     // return loaded ranking
     response.send("Score deleted");

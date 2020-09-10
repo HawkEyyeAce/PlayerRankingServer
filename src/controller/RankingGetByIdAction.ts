@@ -15,10 +15,13 @@ export async function rankingGetByIdAction(request: Request, response: Response)
 
     // if ranking was not found return 404 to the client
     if (!ranking) {
+        response.send("no data available")
         response.status(404);
         response.end();
         return;
     }
+
+    console.log(new Date().toUTCString() + " / " + request.method + " / " + rankingGetByIdAction.name + " / " + JSON.stringify(ranking) + "\n");
 
     // return loaded ranking
     response.send(ranking);
