@@ -1,0 +1,21 @@
+{
+   "name": "PlayerRankingServer",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "devDependencies": {
+    "@types/express": "^4.17.8",
+      "@types/node": "^14.10.0",
+      "express": "^4.17.1",
+      "typescript": "3.3.3333"
+   },
+   "dependencies": {
+      "mysql": "^2.18.1",
+      "reflect-metadata": "^0.1.13",
+      "typeorm": "^0.2.26"
+   },
+   "scripts": {
+      "start_dev": "ts-node src/index.ts",
+      "start": "node dist/index.js",
+      "build": "npx tsc -p ."
+   }
+}
