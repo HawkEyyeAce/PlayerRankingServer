@@ -11,6 +11,6 @@ export class Ranking {
     })
     userID: string;
     
-    @Column()
+    @Column("float", { precision: 4 })
     score: number;
 }
