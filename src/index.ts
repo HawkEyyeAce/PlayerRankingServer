@@ -4,7 +4,6 @@ import { Request, Response } from "express";
 import * as express from 'express';
 import * as bodyParser from "body-parser";
 import { AppRoutes } from "./routes";
-import { Ranking } from "./entity/Ranking";
 
 const PORT = 8080;
 
