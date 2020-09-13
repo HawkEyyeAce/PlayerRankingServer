@@ -7,13 +7,13 @@ import { Ranking } from "../entity/Ranking";
  */
 export async function rankingSaveAction(request: Request, response: Response) {
 
+    console.log("request:", request.body);
     let error = false;
 
     // get a ranking repository to perform operations with ranking
     const rankingRepository = getManager().getRepository(Ranking);
 
     let userData = await rankingRepository.find({ where: {"userID": request.body.userID}});
-    console.log("userData", userData);
 
     // check if this userID is already in the database
     if (Array.isArray(userData) && userData.length)
@@ -33,13 +33,22 @@ export async function rankingSaveAction(request: Request, response: Response) {
     }
     else
     {
-        // create a real ranking object from ranking json object sent over http
-        const newRanking = rankingRepository.create(request.body);
+        console.log("Try to create new userID");
 
-        // save received ranking
-        await rankingRepository.save(newRanking);
+        if (JSON.stringify(request.body) !== "{}")
+        {        
+            // create a real ranking object from ranking json object sent over http
+            const newRanking = rankingRepository.create(request.body);
 
-        console.log("Create new userID");
+            // save received ranking
+            await rankingRepository.save(newRanking);
+        }
+        else
+        {
+            console.log("Empty request");
+            error = true;
+            response.send("Error: Empty request");
+        }
     }
     
     if (!error)
@@ -52,6 +61,6 @@ export async function rankingSaveAction(request: Request, response: Response) {
         console.log(new Date().toUTCString() + " / " + request.method + " / " + rankingSaveAction.name + " / Data sent : " + JSON.stringify(data) + "\n");
 
         // return saved ranking back
-        response.send("Score sent");
+        response.send("Score sent !");
     }
 }
