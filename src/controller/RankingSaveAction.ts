@@ -15,6 +15,8 @@ export async function rankingSaveAction(request: Request, response: Response) {
 
     let userData = await rankingRepository.find({ where: {"userID": request.body.userID}});
 
+    let messageToSend;
+
     // check if this userID is already in the database
     if (Array.isArray(userData) && userData.length)
     {
@@ -23,6 +25,8 @@ export async function rankingSaveAction(request: Request, response: Response) {
         {
             const ranking = rankingRepository.merge(userData[0], {userID: request.body.userID}, {score: request.body.score});
             rankingRepository.save(ranking);
+            messageToSend = "Score updated !";
+
         }
         else
         {
@@ -42,6 +46,7 @@ export async function rankingSaveAction(request: Request, response: Response) {
 
             // save received ranking
             await rankingRepository.save(newRanking);
+            messageToSend = "Score sent !";
         }
         else
         {
@@ -61,6 +66,6 @@ export async function rankingSaveAction(request: Request, response: Response) {
         console.log(new Date().toUTCString() + " / " + request.method + " / " + rankingSaveAction.name + " / Data sent : " + JSON.stringify(data) + "\n");
 
         // return saved ranking back
-        response.send("Score sent !");
+        response.send(messageToSend);
     }
 }

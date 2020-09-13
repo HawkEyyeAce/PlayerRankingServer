@@ -35,7 +35,7 @@ export async function rankingGetInRangeAction(request: Request, response: Respon
 
     // if ranking was not found return 404 to the client
     if (!ranking) {
-        response.send("no data available")
+        response.send("no data available");
         response.status(404);
         response.end();
         return;
